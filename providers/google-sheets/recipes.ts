@@ -1,9 +1,9 @@
 import { Recipe, RecipeBook } from "../../model/recipe";
 import { RecipeBookProvider } from "../../model/provider";
 
-import { GoogleSheetsProvider } from "./main";
+import { GoogleSheetsProvider } from "./base_provider";
 
-class GoogleSheetsRecipesProvider
+class GoogleSheetsRecipeBookProvider
   extends GoogleSheetsProvider
   implements RecipeBookProvider {
   constructor(config: Record<string, unknown>) {
@@ -55,4 +55,4 @@ class GoogleSheetsRecipesProvider
   }
 }
 
-export { GoogleSheetsRecipesProvider };
+export { GoogleSheetsRecipeBookProvider };

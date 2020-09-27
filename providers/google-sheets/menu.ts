@@ -2,7 +2,7 @@ import { MenuProvider } from "../../model/provider";
 import { Menu, Meal } from "../../model/menu";
 import { RecipeBook } from "../../model/recipe";
 
-import { GoogleSheetsProvider } from "./main";
+import { GoogleSheetsProvider } from "./base_provider";
 
 class GoogleSheetsMenuProvider
   extends GoogleSheetsProvider

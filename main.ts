@@ -1,22 +1,21 @@
 import { loadProviderConfig } from "./configProvider";
 import { JoinedQuantities } from "./model/joined_quantities";
 import { ProviderTypes } from "./model/provider";
-import { GoogleSheetsMenuProvider } from "./providers/google-sheets/menu";
-import { GoogleSheetsRecipesProvider } from "./providers/google-sheets/recipes";
+import { GoogleSheetsMenuProvider } from "./providers/google-sheets/main";
+import { GoogleSheetsRecipeBookProvider } from "./providers/google-sheets/main";
 
 async function main() {
-  const GoogleRecipeProviderConfig = await loadProviderConfig(
-    ProviderTypes.RecipeBookProvider,
-    "google-sheets"
-  );
-  const recipeBook = await new GoogleSheetsRecipesProvider(
+  const [
+    GoogleRecipeProviderConfig,
+    GoogleMenuProviderConfig,
+  ] = await Promise.all([
+    loadProviderConfig(ProviderTypes.RecipeBookProvider, "google-sheets"),
+    loadProviderConfig(ProviderTypes.MenuProvider, "google-sheets"),
+  ]);
+  const recipeBook = await new GoogleSheetsRecipeBookProvider(
     GoogleRecipeProviderConfig
   ).GetRecipeBook();
 
-  const GoogleMenuProviderConfig = await loadProviderConfig(
-    ProviderTypes.MenuProvider,
-    "google-sheets"
-  );
   const menu = await new GoogleSheetsMenuProvider(
     recipeBook,
     GoogleMenuProviderConfig
