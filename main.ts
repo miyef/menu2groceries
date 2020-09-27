@@ -1,8 +1,9 @@
 import { loadProviderConfig } from "./configProvider";
-import { JoinedQuantities } from "./model/joined_quantities";
 import { ProviderTypes } from "./model/provider";
 import { GoogleSheetsMenuProvider } from "./providers/googleSheets/main";
 import { GoogleSheetsRecipeBookProvider } from "./providers/googleSheets/main";
+import { GroceriesList } from "./model/menu";
+import { ListonicGroceriesListProvider } from "./providers/listonic/main";
 
 async function main() {
   const [
@@ -24,9 +25,13 @@ async function main() {
   const groceriesList = menu.getGroceriesList();
 
   printGroceriesList(groceriesList);
+
+  const listonic = new ListonicGroceriesListProvider({});
+
+  listonic.AddToGroceries(groceriesList);
 }
 
-function printGroceriesList(groceriesList: Record<string, JoinedQuantities>) {
+function printGroceriesList(groceriesList: GroceriesList) {
   Object.keys(groceriesList).forEach((ingredient) => {
     console.log(`${ingredient}: ${groceriesList[ingredient]}`);
   });

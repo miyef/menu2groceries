@@ -1,10 +1,18 @@
 interface ListonicProviderConfig {
-  listID: string;
+  ListId: string;
+  Url: string;
+  ListonicHeaders: {
+    Authorization: string;
+  };
 }
 
 class ListonicProviderConfig {
   constructor(config: Record<string, unknown>) {
-    throw Error("not implemented");
+    this.ListId = "*****";
+    this.Url = `https://hl2api.listonic.com/api/lists/${this.ListId}/items`;
+    this.ListonicHeaders = {
+      Authorization: "Bearer ********",
+    };
   }
 }
 
