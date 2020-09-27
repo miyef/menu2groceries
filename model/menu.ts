@@ -1,6 +1,4 @@
 import { GroceriesList } from "./groceries_list";
-import { Ingredient } from "./ingredient";
-import { JoinedQuantities } from "./joined_quantities";
 import { Recipe, RecipeBook } from "./recipe";
 
 interface Meal {
