@@ -51,8 +51,8 @@ class Menu {
     this.mealMap[recipeName] += meal.quantity;
   }
 
-  getGroceriesList(): Record<Ingredient["name"], JoinedQuantities> {
-    const groceriesList: Record<Ingredient["name"], JoinedQuantities> = {};
+  getGroceriesList(): GroceriesList {
+    const groceriesList: GroceriesList = {};
 
     for (const [recipe_name, meal_quantity] of Object.entries(this.mealMap)) {
       const ingredients = this.recipeBook.get(recipe_name).ingredients;
