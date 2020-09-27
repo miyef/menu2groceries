@@ -6,19 +6,19 @@ import { GoogleSheetsRecipeBookProvider } from "./providers/google-sheets/main";
 
 async function main() {
   const [
-    GoogleRecipeProviderConfig,
-    GoogleMenuProviderConfig,
+    GoogleSheetsRecipeProviderConfig,
+    GoogleSheetsMenuProviderConfig,
   ] = await Promise.all([
     loadProviderConfig(ProviderTypes.RecipeBookProvider, "google-sheets"),
     loadProviderConfig(ProviderTypes.MenuProvider, "google-sheets"),
   ]);
   const recipeBook = await new GoogleSheetsRecipeBookProvider(
-    GoogleRecipeProviderConfig
+    GoogleSheetsRecipeProviderConfig
   ).GetRecipeBook();
 
   const menu = await new GoogleSheetsMenuProvider(
     recipeBook,
-    GoogleMenuProviderConfig
+    GoogleSheetsMenuProviderConfig
   ).GetMenu();
 
   const groceriesList = menu.getGroceriesList();
