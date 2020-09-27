@@ -28,7 +28,7 @@ async function main() {
 
 function printGroceriesList(groceriesList: Record<string, JoinedQuantities>) {
   Object.keys(groceriesList).forEach((ingredient) => {
-    console.log(`${ingredient}: ${groceriesList[ingredient].toString()}`);
+    console.log(`${ingredient}: ${groceriesList[ingredient]}`);
   });
 }
 
