@@ -1,16 +1,16 @@
 import { loadProviderConfig } from "./configProvider";
 import { JoinedQuantities } from "./model/joined_quantities";
 import { ProviderTypes } from "./model/provider";
-import { GoogleSheetsMenuProvider } from "./providers/google-sheets/main";
-import { GoogleSheetsRecipeBookProvider } from "./providers/google-sheets/main";
+import { GoogleSheetsMenuProvider } from "./providers/googleSheets/main";
+import { GoogleSheetsRecipeBookProvider } from "./providers/googleSheets/main";
 
 async function main() {
   const [
     GoogleSheetsRecipeProviderConfig,
     GoogleSheetsMenuProviderConfig,
   ] = await Promise.all([
-    loadProviderConfig(ProviderTypes.RecipeBookProvider, "google-sheets"),
-    loadProviderConfig(ProviderTypes.MenuProvider, "google-sheets"),
+    loadProviderConfig(ProviderTypes.RecipeBookProvider, "googleSheets"),
+    loadProviderConfig(ProviderTypes.MenuProvider, "googleSheets"),
   ]);
   const recipeBook = await new GoogleSheetsRecipeBookProvider(
     GoogleSheetsRecipeProviderConfig
