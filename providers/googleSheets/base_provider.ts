@@ -8,7 +8,7 @@ type RowWithValues = Required<sheets_v4.Schema$RowData>;
 
 class GoogleSheetsProvider {
   sheets: sheets_v4.Sheets;
-  sheetId: string;
+  sheetID: string;
   sheetName?: string;
   ranges?: string[];
 
@@ -21,7 +21,7 @@ class GoogleSheetsProvider {
 
     const sheets = google.sheets({ version: "v4", auth });
     this.sheets = sheets;
-    this.sheetId = providerConfig.sheetID;
+    this.sheetID = providerConfig.sheetID;
     this.sheetName = providerConfig.sheetName;
     this.ranges = providerConfig.ranges;
   }
@@ -29,12 +29,12 @@ class GoogleSheetsProvider {
   protected async getSheet(ranges?: string[]): Promise<SheetWithData> {
     const result = await this.sheets.spreadsheets.get({
       includeGridData: true,
-      spreadsheetId: this.sheetId,
+      spreadsheetId: this.sheetID,
       ranges,
     });
 
     if (!result.data.sheets) {
-      throw Error(`spreadsheet ${this.sheetId} doesn't have any subsheets`);
+      throw Error(`spreadsheet ${this.sheetID} doesn't have any subsheets`);
     }
 
     let resultSheet: sheets_v4.Schema$Sheet | undefined;
@@ -57,7 +57,7 @@ class GoogleSheetsProvider {
 
     if (!resultSheet.data) {
       throw Error(
-        `result sheet ${this.sheetName} from spreadsheet ${this.sheetId} is empty`
+        `result sheet ${this.sheetName} from spreadsheet ${this.sheetID} is empty`
       );
     }
 

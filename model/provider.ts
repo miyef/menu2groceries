@@ -20,6 +20,7 @@ interface MenuProvider {
 
 interface GroceriesListProvider {
   AddToGroceries(list: GroceriesList): void;
+  RemoveFromGroceries(list: GroceriesList): void;
 }
 
 export {
