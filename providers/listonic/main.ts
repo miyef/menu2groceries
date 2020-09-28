@@ -70,21 +70,23 @@ class ListonicGroceriesListProvider implements GroceriesListProvider {
     ingredient1: ListonicIngredient,
     ingredient2: ListonicIngredient
   ): ListonicIngredient {
-    // TODO: convert ListonicIngredient into JoinedQuantity to properly merge
     // We don't merged purchased ingredients
     if (ingredient2.Checked == 1) {
       return ingredient1;
     }
-    const ingredient = Object.assign({}, ingredient1, {
-      Amount: "",
-      Description: (
-        ingredient1.Description || `${ingredient1.Amount} ${ingredient1.Unit}`
-      ).concat(
-        " + ",
-        ingredient2.Description || `${ingredient2.Amount} ${ingredient2.Unit}`
-      ),
-    });
-    return ingredient;
+
+    const quantity1: JoinedQuantities = JoinedQuantities.fromStringToJoinedQuantity(
+      ingredient1.Description || `${ingredient1.Amount} ${ingredient1.Unit}`
+    );
+
+    const quantity2: JoinedQuantities = JoinedQuantities.fromStringToJoinedQuantity(
+      ingredient1.Description || `${ingredient2.Amount} ${ingredient2.Unit}`
+    );
+
+    return this.convertToListonicIngredient(
+      ingredient1.Name,
+      quantity1.concatQuantity(quantity2)
+    );
   }
 
   async getListonicGroceryList(): Promise<ListonicIngredient[]> {

@@ -1,4 +1,5 @@
 import { Ingredient } from "./ingredient";
+import Qty from "js-quantities";
 
 interface JoinedQuantities {
   quantityList: Ingredient["quantity"][];
@@ -79,6 +80,14 @@ class JoinedQuantities implements JoinedQuantities {
       quantityString += `+${quantity.toString()}`;
       return quantityString;
     }, "");
+  }
+
+  static fromStringToJoinedQuantity(quantityInput: string): JoinedQuantities {
+    const quantities: Qty[] = [];
+    quantityInput
+      .split("+")
+      .forEach((quantity: string) => quantities.push(Qty.parse(quantity)));
+    return new JoinedQuantities(quantities);
   }
 }
 
