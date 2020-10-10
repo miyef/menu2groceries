@@ -37,6 +37,7 @@ class GoogleSheetsRecipeBookProvider
       }
       recipe.addIngredient(name, qty);
     }
+
     return recipe;
   }
 
@@ -49,7 +50,9 @@ class GoogleSheetsRecipeBookProvider
     });
     const recipeBook = new RecipeBook();
     recipes.forEach((recipe) => {
-      recipeBook.add(recipe);
+      if (recipe.getNumberOfIngredients() > 0) {
+        recipeBook.add(recipe);
+      }
     });
     return recipeBook;
   }

@@ -20,6 +20,10 @@ class Recipe implements Recipe {
     this.ingredients = {};
   }
 
+  getNumberOfIngredients(): number {
+    return Object.keys(this.ingredients).length;
+  }
+
   disallowIngredientsMultipleOccurrence(): void {
     this.allowIngredientsMultipleOccurrence = false;
   }
