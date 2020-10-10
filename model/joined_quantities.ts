@@ -68,7 +68,13 @@ class JoinedQuantities implements JoinedQuantities {
     if (!this.isHomogenous()) {
       throw Error("can't get value of quantity, quantity is not homogenous");
     }
-    return this.quantityList[0].scalar.toString();
+    return JoinedQuantities.roundToTwoDecimals(
+      this.quantityList[0].scalar
+    ).toString();
+  }
+
+  static roundToTwoDecimals(number: number): number {
+    return Math.round(number * 100) / 100;
   }
 
   toString(): string {
